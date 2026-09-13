@@ -40,7 +40,7 @@ export const SERVICE_CATALOG: ServiceItem[] = [
       "tax-consultancy",
       "payroll-management",
       "financial-statement-preparation",
-      "business-management-consultancy",
+      "management-consultancy",
     ],
   },
   {
@@ -72,7 +72,7 @@ export const SERVICE_CATALOG: ServiceItem[] = [
       "accounting-bookkeeping",
       "company-secretarial",
       "financial-statement-preparation",
-      "internal-audit-compliance",
+      "internal-audit",
     ],
   },
   {
@@ -137,7 +137,7 @@ export const SERVICE_CATALOG: ServiceItem[] = [
       "tax-consultancy",
       "accounting-bookkeeping",
       "financial-statement-preparation",
-      "business-management-consultancy",
+      "management-consultancy",
     ],
   },
   {
@@ -167,7 +167,7 @@ export const SERVICE_CATALOG: ServiceItem[] = [
     ],
     related: [
       "accounting-bookkeeping",
-      "business-management-consultancy",
+      "management-consultancy",
       "financial-statement-preparation",
       "tax-consultancy",
     ],
@@ -200,8 +200,8 @@ export const SERVICE_CATALOG: ServiceItem[] = [
     related: [
       "accounting-bookkeeping",
       "tax-consultancy",
-      "business-management-consultancy",
-      "internal-audit-compliance",
+      "management-consultancy",
+      "internal-audit",
     ],
   },
   {
@@ -229,10 +229,41 @@ export const SERVICE_CATALOG: ServiceItem[] = [
       "Support management with improvement actions",
     ],
     related: [
-      "business-management-consultancy",
+      "management-consultancy",
       "tax-consultancy",
       "company-secretarial",
       "accounting-bookkeeping",
+    ],
+  },
+  {
+    slug: "management-consultancy",
+    label: "Management Consultancy",
+    tag: "Management Consultancy",
+    title: "Management Consultancy",
+    summary:
+      "Strategic business guidance helps leaders improve performance, solve operational challenges and plan confidently for the future. We support organisations with practical consulting advice that strengthens decision-making, operational efficiency and long-term growth.",
+    image:
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
+    features: [
+      "Business strategy and organisational review",
+      "Operational improvement and process optimisation",
+      "Leadership and decision-support advisory",
+      "Performance analysis and growth planning",
+      "Risk-aware business recommendations",
+      "Practical guidance for sustainable change",
+    ],
+    steps: [
+      "Assess your business objectives and challenges",
+      "Review operations, performance and strategic priorities",
+      "Develop practical recommendations and action plans",
+      "Support implementation and decision-making",
+      "Monitor progress and refine next steps",
+    ],
+    related: [
+      "internal-audit",
+      "tax-consultancy",
+      "accounting-bookkeeping",
+      "company-secretarial",
     ],
   },
 ];

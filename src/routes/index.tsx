@@ -23,6 +23,7 @@ import {
   TrendingUp,
   X,
 } from "lucide-react";
+import contactAnimationSvg from "@/assets/Video call.svg";
 import logo from "@/assets/hsb-logo.png";
 import { Reveal } from "@/components/Reveal";
 import { SERVICE_CATALOG } from "@/lib/service-data";
@@ -260,10 +261,28 @@ function ServiceArt({ kind }: { kind: string }) {
   }
   if (kind === "shield") {
     return (
-      <svg viewBox="0 0 200 90" className="h-20 w-full">
-        <path d="M100 14 L150 28 V52 C150 67 129 79 100 84 C71 79 50 67 50 52 V28 L100 14 Z" fill="none" stroke={stroke} strokeWidth="3" />
-        <path d="M82 45 L94 58 L118 34" fill="none" stroke={gold} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="100" cy="14" r="6" fill={accent} />
+      <svg
+        viewBox="0 0 200 120"
+        className="h-20 w-full"
+        preserveAspectRatio="xMidYMid meet"
+        style={{ display: "block" }}
+      >
+        <path
+          d="M100 12 L148 24 V56 C148 77 128 94 100 106 C72 94 52 77 52 56 V24 L100 12 Z"
+          fill="none"
+          stroke={stroke}
+          strokeWidth="3.5"
+          strokeLinejoin="round"
+        />
+        <circle cx="100" cy="28" r="10" fill={accent} />
+        <path
+          d="M82 58 L94 70 L122 42"
+          fill="none"
+          stroke={gold}
+          strokeWidth="5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     );
   }
@@ -298,27 +317,37 @@ function Home() {
       if (!container) return;
 
       const initWidget = () => {
-        const calendlyWindow = window as typeof window & { Calendly?: { initInlineWidget: (config: { url: string; parentElement: HTMLDivElement }) => void } };
+        const calendlyWindow = window as typeof window & {
+          Calendly?: { initInlineWidget: (config: { url: string; parentElement: HTMLDivElement }) => void };
+        };
+
         if (!calendlyWindow.Calendly || !container) return;
 
         container.innerHTML = "";
         calendlyWindow.Calendly.initInlineWidget({
-          url: "https://calendly.com/iammush22/30min",
+          url: "https://calendly.com/iammush22/30min?hide_event_type_details=1",
           parentElement: container,
         });
       };
 
       const existingScript = document.querySelector('script[src*="assets.calendly.com/assets/external/widget.js"]');
       if (existingScript) {
+        if ((existingScript as HTMLScriptElement).dataset["loaded"] === "true") {
+          initWidget();
+          return;
+        }
+
         existingScript.addEventListener("load", initWidget, { once: true });
-        initWidget();
         return;
       }
 
       const script = document.createElement("script");
       script.src = "https://assets.calendly.com/assets/external/widget.js";
       script.async = true;
-      script.onload = initWidget;
+      script.onload = () => {
+        (script as HTMLScriptElement).dataset["loaded"] = "true";
+        initWidget();
+      };
       document.body.appendChild(script);
     };
 
@@ -583,29 +612,31 @@ function Home() {
           </div>
 
           <Reveal delay={140}>
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                ["Partner-led", "every engagement", Building2],
-                ["Risk-based", "testing approach", ShieldCheck],
-                ["Sector depth", "10+ industries", Layers],
-                ["Clear fees", "agreed before we start", Scale],
-              ].map(([a, b, Icon], i) => (
-                <div
-                  key={a as string}
-                  className={`lift rounded-3xl border border-primary/10 bg-card p-6 ${i % 2 ? "sm:translate-y-6" : ""}`}
-                >
-                  {(() => {
-                    const I = Icon as typeof Building2;
-                    return (
-                      <span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary-soft text-primary">
-                        <I className="h-5 w-5" />
-                      </span>
-                    );
-                  })()}
-                  <p className="mt-4 font-display text-lg font-bold">{a as string}</p>
-                  <p className="text-sm text-muted-foreground">{b as string}</p>
-                </div>
-              ))}
+            <div className="space-y-5">
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  ["Partner-led", "every engagement", Building2],
+                  ["Risk-based", "testing approach", ShieldCheck],
+                  ["Sector depth", "10+ industries", Layers],
+                  ["Clear fees", "agreed before we start", Scale],
+                ].map(([a, b, Icon], i) => (
+                  <div
+                    key={a as string}
+                    className={`lift rounded-3xl border border-primary/10 bg-card p-6 ${i % 2 ? "sm:translate-y-6" : ""}`}
+                  >
+                    {(() => {
+                      const I = Icon as typeof Building2;
+                      return (
+                        <span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary-soft text-primary">
+                          <I className="h-5 w-5" />
+                        </span>
+                      );
+                    })()}
+                    <p className="mt-4 font-display text-lg font-bold">{a as string}</p>
+                    <p className="text-sm text-muted-foreground">{b as string}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </Reveal>
         </div>
@@ -626,25 +657,35 @@ function Home() {
           </Reveal>
 
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.map((s, i) => (
-              <Reveal key={s.title} delay={i * 70}>
-                <article className="lift group flex h-full flex-col rounded-3xl border border-border bg-card p-6">
-                  <div className="flex items-center gap-3">
-                    <span className="float-slow grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-primary text-primary-foreground transition-transform group-hover:rotate-[-6deg] group-hover:scale-110" style={{ animationDelay: `${-i}s` }}>
-                      <s.icon className="h-5 w-5" />
-                    </span>
-                    <span className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
-                      {s.tag}
-                    </span>
-                  </div>
-                  <h3 className="mt-5 text-xl font-bold">{s.title}</h3>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
-                  <div className="mt-5 rounded-2xl bg-secondary/70 p-2">
-                    <ServiceArt kind={s.art} />
-                  </div>
-                </article>
-              </Reveal>
-            ))}
+            {SERVICES.map((s, i) => {
+              const serviceImage = SERVICE_CATALOG.find((item) => item.slug === s.slug)?.image;
+
+              return (
+                <Reveal key={s.title} delay={i * 70}>
+                  <article className="lift group flex h-full flex-col rounded-3xl border border-border bg-card p-6">
+                    <div className="flex items-center gap-3">
+                      <span className="float-slow grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-primary text-primary-foreground transition-transform group-hover:rotate-[-6deg] group-hover:scale-110" style={{ animationDelay: `${-i}s` }}>
+                        <s.icon className="h-5 w-5" />
+                      </span>
+                      <span className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+                        {s.tag}
+                      </span>
+                    </div>
+                    <h3 className="mt-5 text-xl font-bold">{s.title}</h3>
+                    <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
+                    {serviceImage ? (
+                      <div className="mt-5 overflow-hidden rounded-2xl border border-border bg-secondary/60">
+                        <img
+                          src={serviceImage}
+                          alt={s.title}
+                          className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                    ) : null}
+                  </article>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -772,13 +813,15 @@ function Home() {
             </p>
           </Reveal>
           <Reveal delay={120}>
-            <div className="mx-auto mt-9 max-w-6xl overflow-hidden rounded-[2rem] border border-border bg-transparent shadow-none">
-              <div
-                ref={calendlyWidgetRef}
-                className="calendly-inline-widget w-full"
-                data-url="https://calendly.com/iammush22/30min"
-                style={{ minWidth: "100%", width: "100%" }}
-              />
+            <div className="mx-auto mt-9 max-w-[1400px]">
+              <div className="w-full max-w-[1200px] justify-self-center bg-transparent shadow-none md:justify-self-center">
+                <div
+                  ref={calendlyWidgetRef}
+                  className="calendly-inline-widget"
+                  data-url="https://calendly.com/iammush22/30min?hide_event_type_details=1"
+                  style={{ minWidth: "320px", height: "600px", width: "100%", border: "none", borderRadius: 0, overflow: "hidden" }}
+                />
+              </div>
             </div>
             <p className="mt-4 text-xs text-muted-foreground">
               Professional support · Confidential guidance · Practical solutions
