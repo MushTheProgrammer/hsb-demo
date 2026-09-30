@@ -134,7 +134,7 @@ function ContactPage() {
             </div>
             <iframe
               title="Book a free consultation with HSB"
-              src="https://calendly.com/iammush22/30min?hide_event_type_details=1"
+              src="https://calendly.com/hsbcorporateservices/30min"
               className="calendly-contact-embed mt-5 w-full border-0 bg-transparent"
               loading="lazy"
             />

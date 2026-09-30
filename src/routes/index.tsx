@@ -293,7 +293,7 @@ function Home() {
 
         container.innerHTML = "";
         calendlyWindow.Calendly.initInlineWidget({
-          url: "https://calendly.com/iammush22/30min?hide_event_type_details=1",
+          url: "https://calendly.com/hsbcorporateservices/30min",
           parentElement: container,
         });
       };
@@ -755,7 +755,7 @@ function Home() {
                 <div
                   ref={calendlyWidgetRef}
                   className="calendly-inline-widget"
-                  data-url="https://calendly.com/iammush22/30min?hide_event_type_details=1"
+                  data-url="https://calendly.com/hsbcorporateservices/30min"
                 />
               </div>
             </div>
