@@ -4,7 +4,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* HSB Associate design system — navy authority + electric teal / warm gold */
+/* HSB design system — navy authority + electric teal / warm gold */
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -42,28 +42,28 @@
 
 :root {
   --radius: 1rem;
-  --background: oklch(0.99 0.005 250);
-  --foreground: oklch(0.22 0.06 268);
+  --background: #f2f4f6;
+  --foreground: #17233c;
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.06 268);
+  --card-foreground: #17233c;
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.22 0.06 268);
-  --primary: oklch(0.35 0.13 268);
+  --primary: #10244a;
   --primary-foreground: #ffffff;
-  --primary-soft: #edf2e7;
-  --secondary: #f4f7f0;
-  --secondary-foreground: #2a352a;
-  --muted: #f4f5f1;
-  --muted-foreground: #58615a;
-  --accent: oklch(0.72 0.13 195);
-  --accent-foreground: oklch(0.2 0.06 268);
-  --gold: oklch(0.79 0.13 82);
-  --gold-foreground: oklch(0.24 0.06 268);
+  --primary-soft: #f5edda;
+  --secondary: #e8ebef;
+  --secondary-foreground: #17233c;
+  --muted: #eceff2;
+  --muted-foreground: #596579;
+  --accent: #c99e3a;
+  --accent-foreground: #10244a;
+  --gold: #d4ad4b;
+  --gold-foreground: #10244a;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.98 0.005 250);
-  --border: oklch(0.9 0.018 258);
-  --input: oklch(0.9 0.018 258);
-  --ring: oklch(0.55 0.12 240);
+  --border: #d7dce3;
+  --input: #d7dce3;
+  --ring: #c99e3a;
 }
 
 @layer base {
@@ -95,21 +95,21 @@
 
 @utility hero-mesh {
   background:
-    radial-gradient(ellipse at 12% -5%, oklch(0.35 0.13 268 / 0.28), transparent 55%),
-    radial-gradient(ellipse at 88% 12%, oklch(0.72 0.13 195 / 0.35), transparent 55%),
-    radial-gradient(ellipse at 55% 105%, oklch(0.79 0.13 82 / 0.22), transparent 60%),
-    oklch(0.985 0.008 250);
+    radial-gradient(ellipse at 12% -5%, rgb(16 36 74 / 0.16), transparent 55%),
+    radial-gradient(ellipse at 88% 12%, rgb(212 173 75 / 0.2), transparent 55%),
+    radial-gradient(ellipse at 55% 105%, rgb(212 173 75 / 0.13), transparent 60%),
+    #f2f4f6;
 }
 
 @utility deep-mesh {
   background:
-    radial-gradient(ellipse at 15% 0%, oklch(0.72 0.13 195 / 0.28), transparent 55%),
-    radial-gradient(ellipse at 85% 90%, oklch(0.79 0.13 82 / 0.18), transparent 55%),
-    linear-gradient(160deg, oklch(0.28 0.11 268), oklch(0.2 0.07 268));
+    radial-gradient(ellipse at 15% 0%, rgb(212 173 75 / 0.22), transparent 55%),
+    radial-gradient(ellipse at 85% 90%, rgb(212 173 75 / 0.16), transparent 55%),
+    linear-gradient(160deg, #172f59, #0b1934);
 }
 
 @utility soft-mesh {
-  background: linear-gradient(180deg, oklch(0.985 0.008 250), oklch(0.955 0.02 240));
+  background: linear-gradient(180deg, #ffffff, #edf0f3);
 }
 
 @utility glass {
@@ -267,9 +267,8 @@
   width: 100% !important;
   min-width: 0;
   max-width: 100% !important;
-  height: 760px;
-  min-height: 620px;
-  overflow: hidden;
+  height: 850px !important;
+  min-height: 850px;
   touch-action: manipulation;
   margin: 0 auto;
   display: block;
@@ -302,14 +301,24 @@
 
 @media (max-width: 767px) {
   .calendly-inline-widget {
-    height: 72vh;
-    min-height: 520px;
+    height: 1000px !important;
+    min-height: 1000px;
     max-width: 100% !important;
     width: 100% !important;
     background: transparent;
     box-shadow: none;
     border: 0 !important;
     border-radius: 0 !important;
+  }
+}
+
+.calendly-contact-embed {
+  height: 850px;
+}
+
+@media (max-width: 767px) {
+  .calendly-contact-embed {
+    height: 1000px;
   }
 }
 
@@ -378,4 +387,103 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+.site-header {
+  background: #ffffff !important;
+  border-color: #d7dce3 !important;
+  box-shadow: 0 12px 30px -24px rgb(16 36 74 / 35%);
+}
+
+body.is-scrolled .site-header {
+  background: rgb(255 255 255 / 50%) !important;
+  backdrop-filter: blur(14px) saturate(140%);
+}
+
+.site-header img {
+  background: transparent;
+  border-radius: 4px;
+}
+
+.site-header nav a,
+.site-header nav button,
+.site-header .site-nav-link {
+  color: #26344e;
+}
+
+.site-header nav a:hover,
+.site-header nav button:hover,
+.site-header .site-nav-link:hover,
+.site-header [aria-current="page"] {
+  color: var(--gold) !important;
+}
+
+.site-header nav .group > div {
+  border-color: #d7dce3;
+  background: #ffffff;
+}
+
+.site-header nav .group > div a {
+  color: #26344e;
+}
+
+.site-header nav .group > div a:hover {
+  background: var(--gold);
+  color: #ffffff !important;
+}
+
+.site-header .site-mobile-menu,
+.site-header .glass {
+  border-color: #d7dce3;
+  background: #ffffff;
+  color: #26344e;
+}
+
+.site-header .site-mobile-menu a,
+.site-header .glass a,
+.site-header .site-mobile-menu p {
+  color: #26344e;
+}
+
+.site-header .site-mobile-menu a:hover,
+.site-header .glass a:hover {
+  background: #f0f2f5;
+  color: #10244a;
+}
+
+.site-header a[href="/contact"] {
+  background: var(--gold) !important;
+  color: #10244a !important;
+}
+
+.site-footer {
+  border-color: #d7dce3 !important;
+  background: #ffffff !important;
+  color: #17233c;
+}
+
+.site-footer h2,
+.site-footer h3,
+.site-footer p,
+.site-footer a,
+.site-footer li,
+.site-footer span {
+  color: #43516a !important;
+}
+
+.site-footer svg {
+  color: var(--gold) !important;
+}
+
+.site-footer a:hover {
+  color: #ad8428 !important;
+}
+
+.site-footer iframe {
+  border-color: rgb(212 173 75 / 35%);
+}
+
+:is([class~="bg-[#10BFC3]"]) {
+  background-color: var(--gold) !important;
+  color: var(--gold-foreground) !important;
 }

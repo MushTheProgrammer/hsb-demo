@@ -14,7 +14,8 @@ import {
   X,
 } from "lucide-react";
 import { useState } from "react";
-import logo from "@/assets/hsb-logo.png";
+import logo from "@/assets/HSB_LOGO_WORDMARK.png";
+import { SiteFooter } from "@/components/SiteFooter";
 import { SERVICE_CATALOG } from "@/lib/service-data";
 
 export const Route = createFileRoute("/industries")({
@@ -69,15 +70,14 @@ function IndustriesPage() {
 
   return (
     <div className="min-h-screen bg-[#f5f7fb] text-slate-800">
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur-xl shadow-[0_15px_35px_-30px_rgba(15,23,42,0.35)]">
+      <header className="site-header fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur-xl shadow-[0_15px_35px_-30px_rgba(15,23,42,0.35)]">
         <div className="mx-auto flex max-w-7xl items-center gap-4 px-5 py-3">
           <Link to="/" className="flex min-w-0 items-center gap-3">
-            <img src={logo} alt="HSB Consulting & Advisory" className="h-10 w-auto shrink-0 md:h-12" />
+            <img src={logo} alt="HSB Consulting & Corporate Services (Pvt) Ltd." className="h-12 w-auto max-w-[144px] shrink-0 object-contain object-center md:h-16 md:max-w-[192px]" />
           </Link>
 
-          <nav className="ml-auto hidden items-center gap-1 lg:flex">
-            <Link to="/" className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-sky-700">Home</Link>
-            <Link to="/about" className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-sky-700">About</Link>
+          <nav className="ml-auto hidden items-center gap-1 xl:flex">
+            <Link to="/about" className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-sky-700">About us</Link>
             <div className="group relative">
               <button className="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-sky-700">
                 Services
@@ -96,30 +96,32 @@ function IndustriesPage() {
               </div>
             </div>
             <Link to="/industries" className="rounded-full px-4 py-2 text-sm font-medium text-sky-700 transition-colors hover:bg-slate-100">Industries</Link>
-            <Link to="/#faq" className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-sky-700">FAQ</Link>
+            <Link to="/insights" className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-sky-700">Insights</Link>
+            <Link to="/faq" className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-sky-700">FAQ</Link>
           </nav>
 
-          <a
-            href="/#contact"
-            className="ml-auto hidden rounded-full bg-[#10BFC3] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_25px_-18px_rgba(16,191,195,0.8)] transition-transform hover:scale-[1.02] lg:inline-flex"
-          >
-            Book a consultation
-          </a>
+          <div className="ml-3 hidden items-center gap-3 xl:flex">
+            <a href="/#contact" className="rounded-full border border-[#d4ad4b] px-4 py-2.5 text-sm font-semibold text-[#10244a] transition-colors hover:bg-[#d4ad4b]">
+              Book a Free Consultation
+            </a>
+            <a href="/contact" className="rounded-full bg-[#10BFC3] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_25px_-18px_rgba(16,191,195,0.8)] transition-transform hover:scale-[1.02]">
+              Contact us
+            </a>
+          </div>
 
           <button
             aria-label="Toggle menu"
             onClick={() => setMenuOpen((v) => !v)}
-            className="ml-auto grid h-10 w-10 shrink-0 place-items-center rounded-full border border-slate-200 text-sky-700 lg:hidden"
+            className="ml-auto grid h-10 w-10 shrink-0 place-items-center rounded-full border border-slate-200 text-sky-700 xl:hidden"
           >
             {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
 
         {menuOpen && (
-          <div className="border-t border-slate-200 bg-white lg:hidden">
+          <div className="site-mobile-menu border-t border-slate-200 bg-white xl:hidden">
             <div className="mx-auto flex max-w-7xl flex-col p-4">
-              <Link to="/" onClick={() => setMenuOpen(false)} className="rounded-xl px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100">Home</Link>
-              <Link to="/about" onClick={() => setMenuOpen(false)} className="rounded-xl px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100">About</Link>
+              <Link to="/about" onClick={() => setMenuOpen(false)} className="rounded-xl px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100">About us</Link>
               <div className="px-4 py-3">
                 <div className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Services</div>
                 <div className="grid gap-1">
@@ -129,8 +131,10 @@ function IndustriesPage() {
                 </div>
               </div>
               <Link to="/industries" onClick={() => setMenuOpen(false)} className="rounded-xl px-4 py-3 text-sm font-medium text-sky-700 hover:bg-slate-100">Industries</Link>
-              <Link to="/#faq" onClick={() => setMenuOpen(false)} className="rounded-xl px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100">FAQ</Link>
-              <a href="/#contact" onClick={() => setMenuOpen(false)} className="mt-2 rounded-xl bg-[#10BFC3] px-4 py-3 text-center text-sm font-semibold text-white">Book a consultation</a>
+              <Link to="/insights" onClick={() => setMenuOpen(false)} className="rounded-xl px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100">Insights</Link>
+              <Link to="/faq" onClick={() => setMenuOpen(false)} className="rounded-xl px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100">FAQ</Link>
+              <a href="/#contact" onClick={() => setMenuOpen(false)} className="mt-2 rounded-xl border border-[#d4ad4b] px-4 py-3 text-center text-sm font-semibold text-[#10244a]">Book a Free Consultation</a>
+              <a href="/contact" onClick={() => setMenuOpen(false)} className="mt-2 rounded-xl bg-[#10BFC3] px-4 py-3 text-center text-sm font-semibold text-white">Contact us</a>
             </div>
           </div>
         )}
@@ -148,7 +152,7 @@ function IndustriesPage() {
         <section className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {industries.map(({ title, description, icon: Icon }) => (
             <div key={title} className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-[0_20px_45px_-32px_rgba(13,59,114,0.35)]">
-              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EEF3E9] text-[#556F44]">
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EEF3E9] text-[var(--gold)]">
                 <Icon className="h-5 w-5" />
               </div>
               <h2 className="text-xl font-bold leading-snug text-slate-900">{title}</h2>
@@ -162,12 +166,13 @@ function IndustriesPage() {
           <div className="mt-6 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
             <h2 className="max-w-xl text-3xl font-extrabold leading-tight md:text-4xl">Let’s discuss what your business needs.</h2>
             <Link to="/#contact" className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-slate-900 transition-transform hover:translate-y-[-1px]">
-              Book a consultation
+              Book a Free Consultation
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </section>
       </main>
+      <SiteFooter />
     </div>
   );
 }

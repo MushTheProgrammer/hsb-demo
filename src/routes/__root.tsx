@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
+import logo from "@/assets/HSB_LOGO.png";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
@@ -77,17 +78,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "HSB Associate — Audit, Assurance & Advisory" },
+      { title: "HSB Consulting & Corporate Services (Pvt) Ltd." },
       {
         name: "description",
         content:
-          "Independent audit, assurance and advisory services — partner-led, risk-based and reported in plain language.",
+          "Audit, assurance and advisory services delivered with a risk-based approach and clear reporting.",
       },
-      { name: "author", content: "HSB Associate" },
-      { property: "og:title", content: "HSB Associate — Audit, Assurance & Advisory" },
+      { name: "author", content: "HSB Consulting & Corporate Services (Pvt) Ltd." },
+      { property: "og:title", content: "HSB Consulting & Corporate Services (Pvt) Ltd." },
       {
         property: "og:description",
-        content: "Independent audit, assurance and advisory built on rigour, clarity and trust.",
+        content: "Audit, assurance and advisory built on rigour, clarity and trust.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -101,7 +102,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Manrope:wght@400;500;600;700&display=swap",
       },
-      { rel: "icon", type: "image/png", href: "/favicon.png" },
+      { rel: "icon", type: "image/png", href: logo },
     ],
   }),
   shellComponent: RootShell,
@@ -126,6 +127,16 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  useEffect(() => {
+    const updateScrollState = () => {
+      document.body.classList.toggle("is-scrolled", window.scrollY > 24);
+    };
+
+    updateScrollState();
+    window.addEventListener("scroll", updateScrollState, { passive: true });
+    return () => window.removeEventListener("scroll", updateScrollState);
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

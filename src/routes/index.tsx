@@ -7,16 +7,10 @@ import {
   Building2,
   CheckCircle2,
   ChevronDown,
-  Facebook,
   FileSearch,
-  Instagram,
   Landmark,
   Layers,
-  Linkedin,
-  Mail,
-  MapPin,
   Menu,
-  Phone,
   Scale,
   ShieldCheck,
   Sparkles,
@@ -24,20 +18,29 @@ import {
   X,
 } from "lucide-react";
 import contactAnimationSvg from "@/assets/Video call.svg";
-import logo from "@/assets/hsb-logo.png";
+import logo from "@/assets/HSB_LOGO_WORDMARK.png";
+import accountingIcon from "@/assets/img/service-icons/accounting.png";
+import taxIcon from "@/assets/img/service-icons/tax.png";
+import secretarialIcon from "@/assets/img/service-icons/secretarial.png";
+import payrollIcon from "@/assets/img/service-icons/payroll.png";
+import financialStatementsIcon from "@/assets/img/service-icons/financial-statements.png";
+import internalAuditIcon from "@/assets/img/service-icons/internal-audit.png";
+import managementConsultancyIcon from "@/assets/img/service-icons/management-consultancy.png";
 import { Reveal } from "@/components/Reveal";
+import { SiteFooter } from "@/components/SiteFooter";
+import { FAQ_ITEMS } from "@/lib/faq-data";
 import { SERVICE_CATALOG } from "@/lib/service-data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "HSB Consulting & Advisory (Pvt) Ltd." },
+      { title: "HSB Consulting & Corporate Services (Pvt) Ltd." },
       {
         name: "description",
         content:
-          "HSB Consulting & Advisory (Pvt) Ltd. provides assurance, accounting, taxation, secretarial, payroll, risk and business advisory services to SMEs and growing organisations.",
+          "HSB Consulting & Corporate Services (Pvt) Ltd. provides assurance, accounting, taxation, secretarial, payroll, risk and business advisory services to SMEs and growing organisations.",
       },
-      { property: "og:title", content: "HSB Consulting & Advisory (Pvt) Ltd." },
+      { property: "og:title", content: "HSB Consulting & Corporate Services (Pvt) Ltd." },
       {
         property: "og:description",
         content:
@@ -51,79 +54,68 @@ export const Route = createFileRoute("/")({
 });
 
 const NAV = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Services", href: "#services", items: SERVICE_CATALOG.map((service) => ({
+  { label: "About us", href: "/about" },
+  {
+    label: "Services",
+    href: "#services",
+    items: SERVICE_CATALOG.map((service) => ({
       label: service.label,
       href: `/services/${service.slug}`,
-    })) },
+    })),
+  },
   { label: "Industries", href: "/industries" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Insights", href: "/insights" },
+  { label: "FAQ", href: "/faq" },
 ];
 
 const SERVICES = [
   {
     slug: "accounting-bookkeeping",
-    tag: "01 · Accounting",
     title: "Accounting & Bookkeeping Services",
     body: "Accurate bookkeeping, financial record maintenance and management reporting that support clear decision-making and dependable business records.",
-    icon: FileSearch,
+    cardIcon: accountingIcon,
     art: "audit",
   },
   {
     slug: "tax-consultancy",
-    tag: "02 · Tax",
-    title: "Tax Consultancy & Advisory",
+    title: "Tax Compliance, Tax Filing & Advisory",
     body: "Practical tax guidance, compliance support and strategic advice that help clients manage obligations with confidence and efficiency.",
-    icon: Landmark,
+    cardIcon: taxIcon,
     art: "flow",
   },
   {
     slug: "company-secretarial",
-    tag: "03 · Secretarial",
     title: "Company Secretarial Services",
     body: "Corporate governance, statutory administration and document management support to help businesses remain compliant and well organised.",
-    icon: Building2,
+    cardIcon: secretarialIcon,
     art: "docs",
   },
   {
-    slug: "vat-svat-income-tax-compliance",
-    tag: "04 · Tax Compliance",
-    title: "VAT, SVAT & Income Tax Compliance",
-    body: "Tax compliance support covering VAT, SVAT and income tax filing, deadline monitoring and practical guidance for smoother regulatory handling.",
-    icon: Landmark,
-    art: "flow",
-  },
-  {
     slug: "payroll-management",
-    tag: "05 · Payroll",
     title: "Payroll Management Services",
     body: "Confidential payroll processing, statutory calculations, reconciliations and reporting carried out with accuracy and professionalism.",
-    icon: BarChart3,
+    cardIcon: payrollIcon,
     art: "pulse",
   },
   {
     slug: "financial-statement-preparation",
-    tag: "06 · Reporting",
     title: "Financial Statement Preparation",
     body: "Preparation of clear and accurate financial statements and related schedules that enable informed reporting and management decisions.",
-    icon: Layers,
+    cardIcon: financialStatementsIcon,
     art: "forecast",
   },
   {
     slug: "internal-audit",
-    tag: "07 · Risk",
     title: "Internal Audit",
     body: "Independent review of internal controls, processes and systems to reduce operational risk and strengthen business oversight.",
-    icon: ShieldCheck,
+    cardIcon: internalAuditIcon,
     art: "shield",
   },
   {
     slug: "management-consultancy",
-    tag: "08 · Strategy",
     title: "Management Consultancy",
     body: "Business-focused guidance to improve performance, strengthen decision-making and support sustainable growth across the organisation.",
-    icon: TrendingUp,
+    cardIcon: managementConsultancyIcon,
     art: "bars",
   },
 ];
@@ -147,32 +139,9 @@ const INDUSTRIES = [
   "Agricultural & Fertilizer Imports",
   "Professional Services",
   "Small & Medium Enterprises",
-  "Corporate & Entrepreneurial Businesses",
-  "Other growing businesses",
 ];
 
-const FAQS = [
-  {
-    q: "What services does HSB provide?",
-    a: "HSB supports clients across accounting and bookkeeping, tax consultancy, company secretarial services, payroll, financial statement preparation, internal audit, and business advisory.",
-  },
-  {
-    q: "Who do you work with?",
-    a: "We support SMEs, growing businesses and organisations across manufacturing, logistics, education, retail, professional services, agriculture and other corporate sectors.",
-  },
-  {
-    q: "How do you support corporate compliance?",
-    a: "We handle company incorporation, annual returns, statutory registers, board and shareholder resolutions, share changes, regulatory filings and governance support.",
-  },
-  {
-    q: "Do you provide payroll support?",
-    a: "Yes. We provide monthly payroll processing, salary calculations, EPF/ETF compliance support, reporting, leaves and payroll reconciliations with strict confidentiality.",
-  },
-  {
-    q: "How can I get in touch?",
-    a: "You can reach us at 076-7999939 / 077-8850441, via WhatsApp on the same numbers, or by email at hbhamz@yahoo.com.",
-  },
-];
+const HOME_FAQS = FAQ_ITEMS.slice(0, 3);
 
 function ServiceArt({ kind }: { kind: string }) {
   const stroke = "oklch(0.35 0.13 268)";
@@ -304,7 +273,6 @@ function ServiceArt({ kind }: { kind: string }) {
 function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
   const calendlyWidgetRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -362,19 +330,19 @@ function Home() {
     <div className="min-h-screen overflow-x-hidden">
       {/* NAV */}
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        className={`site-header fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
           scrolled ? "glass shadow-[0_10px_30px_-24px_oklch(0.35_0.13_268/0.6)]" : "bg-transparent"
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center gap-4 px-5 py-3">
-          <a href="#top" className="flex min-w-0 items-center gap-3">
+          <a href="/" className="flex min-w-0 items-center gap-3">
             <img
               src={logo}
-              alt="HSB Consulting & Advisory (Pvt) Ltd."
-              className="h-10 w-auto shrink-0 md:h-12"
+              alt="HSB Consulting & Corporate Services (Pvt) Ltd."
+              className="h-12 w-auto max-w-[144px] shrink-0 object-contain object-center md:h-16 md:max-w-[192px]"
             />
           </a>
-          <nav className="ml-auto hidden items-center gap-1 lg:flex">
+          <nav className="ml-auto hidden items-center gap-1 xl:flex">
             {NAV.map((n) => {
               if (n.label === "Services") {
                 return (
@@ -421,29 +389,31 @@ function Home() {
               );
             })}
           </nav>
-          <a
-            href="#contact"
-            className="shine ml-auto hidden rounded-full bg-[#10BFC3] px-5 py-2.5 text-sm font-semibold text-white transition-transform hover:scale-105 lg:ml-3 lg:inline-flex"
-          >
-            Book a consultation
-          </a>
+          <div className="ml-3 hidden items-center gap-3 xl:flex">
+            <a href="/#contact" className="rounded-full border border-[#d4ad4b] px-4 py-2.5 text-sm font-semibold text-[#10244a] transition-colors hover:bg-[#d4ad4b]">
+              Book a Free Consultation
+            </a>
+            <a href="/contact" className="shine rounded-full bg-[#10BFC3] px-5 py-2.5 text-sm font-semibold text-white transition-transform hover:scale-105">
+              Contact us
+            </a>
+          </div>
           <button
             aria-label="Toggle menu"
             onClick={() => setMenuOpen((v) => !v)}
-            className="ml-auto grid h-10 w-10 shrink-0 place-items-center rounded-full border border-border text-primary lg:hidden"
+            className="ml-auto grid h-10 w-10 shrink-0 place-items-center rounded-full border border-border text-primary xl:hidden"
           >
             {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
         {menuOpen && (
-          <div className="glass border-t border-border lg:hidden">
+          <div className="site-mobile-menu glass border-t border-border xl:hidden">
             <div className="mx-auto flex max-w-7xl flex-col p-4">
               {NAV.map((n) => {
                 if (n.label === "Services") {
                   return (
                     <div key={n.label} className="rounded-xl px-2 py-2">
                       <div className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                        Services
+                        {n.label}
                       </div>
                       <div className="grid gap-1">
                         {n.items?.map((item) => (
@@ -485,12 +455,11 @@ function Home() {
                   </a>
                 );
               })}
-              <a
-                href="#contact"
-                onClick={() => setMenuOpen(false)}
-                className="mt-2 rounded-xl bg-[#10BFC3] px-4 py-3 text-center text-sm font-semibold text-white"
-              >
-                Book a consultation
+              <a href="/#contact" onClick={() => setMenuOpen(false)} className="mt-2 rounded-xl border border-[#d4ad4b] px-4 py-3 text-center text-sm font-semibold text-[#10244a]">
+                Book a Free Consultation
+              </a>
+              <a href="/contact" onClick={() => setMenuOpen(false)} className="mt-2 rounded-xl bg-[#10BFC3] px-4 py-3 text-center text-sm font-semibold text-white">
+                Contact us
               </a>
             </div>
           </div>
@@ -501,8 +470,8 @@ function Home() {
       <section id="top" className="hero-mesh relative isolate overflow-hidden pt-32 pb-24 md:pt-40 md:pb-32">
         <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-accent/25 blur-3xl blob" />
         <div className="pointer-events-none absolute -right-20 top-40 h-80 w-80 rounded-full bg-gold/25 blur-3xl blob" style={{ animationDelay: "-6s" }} />
-        <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-[1.05fr_0.95fr]">
-          <div>
+        <div className="mx-auto max-w-7xl px-5">
+          <div className="max-w-3xl">
             <Reveal>
               <span className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-card/70 px-4 py-1.5 text-xs font-semibold tracking-wide text-primary uppercase">
                 <Sparkles className="h-3.5 w-3.5 text-accent" />
@@ -516,7 +485,7 @@ function Home() {
             </Reveal>
             <Reveal delay={180}>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-                HSB Consulting & Advisory (Pvt) Ltd. helps businesses make sense of complexity through
+                HSB Consulting & Corporate Services (Pvt) Ltd. helps businesses make sense of complexity through
                 accurate financial reporting, tax guidance, governance support and practical advice
                 tailored to each client’s needs.
               </p>
@@ -548,39 +517,6 @@ function Home() {
             </Reveal>
           </div>
 
-          <Reveal delay={200} className="relative">
-            <div className="float-slow relative rounded-[2rem] border border-primary/10 bg-card/85 p-6 shadow-[0_40px_80px_-50px_oklch(0.35_0.13_268/0.65)] backdrop-blur">
-              <div className="flex items-center justify-between">
-                <p className="font-display text-sm font-bold text-primary">Audit readiness</p>
-                <span className="rounded-full bg-accent/20 px-3 py-1 text-xs font-semibold text-primary">
-                  On track
-                </span>
-              </div>
-              <ServiceArt kind="bars" />
-              <div className="mt-4 grid gap-3">
-                {[
-                  ["Planning & risk assessment", "Complete"],
-                  ["Controls walkthrough", "In review"],
-                  ["Substantive testing", "Scheduled"],
-                ].map(([label, state], i) => (
-                  <div
-                    key={label}
-                    className="flex items-center gap-3 rounded-2xl border border-border bg-background/70 px-4 py-3"
-                  >
-                    <CheckCircle2
-                      className={`h-5 w-5 shrink-0 ${i === 0 ? "text-accent" : "text-muted-foreground/50"}`}
-                    />
-                    <span className="min-w-0 flex-1 truncate text-sm font-medium">{label}</span>
-                    <span className="shrink-0 text-xs font-semibold text-muted-foreground">{state}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="float-slow absolute -bottom-12 -left-10 z-10 hidden rounded-2xl border border-primary/10 bg-card px-5 py-4 shadow-xl sm:block" style={{ animationDelay: "-3s" }}>
-              <p className="font-display text-2xl font-extrabold text-primary">Trusted</p>
-              <p className="text-xs text-muted-foreground">business support and guidance</p>
-            </div>
-          </Reveal>
         </div>
       </section>
 
@@ -603,7 +539,7 @@ function Home() {
             </Reveal>
             <Reveal delay={170}>
               <p className="mt-4 leading-relaxed text-muted-foreground">
-                HSB Consulting & Advisory (Pvt) Ltd. brings together professional expertise,
+                HSB Consulting & Corporate Services (Pvt) Ltd. brings together professional expertise,
                 independent perspective and practical business insight across assurance, accounting,
                 taxation, secretarial services, internal audit, risk management, advisory and business
                 consultancy.
@@ -615,9 +551,8 @@ function Home() {
             <div className="space-y-5">
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  ["Partner-led", "every engagement", Building2],
                   ["Risk-based", "testing approach", ShieldCheck],
-                  ["Sector depth", "10+ industries", Layers],
+                  ["Sector depth", "8 industries", Layers],
                   ["Clear fees", "agreed before we start", Scale],
                 ].map(([a, b, Icon], i) => (
                   <div
@@ -662,27 +597,33 @@ function Home() {
 
               return (
                 <Reveal key={s.title} delay={i * 70}>
-                  <article className="lift group flex h-full flex-col rounded-3xl border border-border bg-card p-6">
+                  <Link
+                    to="/services/$service"
+                    params={{ service: s.slug }}
+                    aria-label={`View ${s.title}`}
+                    className="lift group flex h-full flex-col rounded-3xl border border-border bg-card p-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  >
                     <div className="flex items-center gap-3">
-                      <span className="float-slow grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-primary text-primary-foreground transition-transform group-hover:rotate-[-6deg] group-hover:scale-110" style={{ animationDelay: `${-i}s` }}>
-                        <s.icon className="h-5 w-5" />
-                      </span>
-                      <span className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
-                        {s.tag}
-                      </span>
+                      <img
+                        src={s.cardIcon}
+                        alt=""
+                        aria-hidden="true"
+                        className="h-12 w-12 shrink-0 rounded-xl object-contain transition-transform group-hover:scale-105"
+                      />
                     </div>
                     <h3 className="mt-5 text-xl font-bold">{s.title}</h3>
                     <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
                     {serviceImage ? (
-                      <div className="mt-5 overflow-hidden rounded-2xl border border-border bg-secondary/60">
+                      <div className="home-service-image-frame mt-5 flex h-48 w-full items-center justify-center overflow-hidden rounded-2xl border border-slate-200 bg-[#eef1f4]">
                         <img
                           src={serviceImage}
                           alt={s.title}
-                          className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          loading="lazy"
+                          className="mx-auto block h-full w-full rounded-2xl object-contain object-center"
                         />
                       </div>
                     ) : null}
-                  </article>
+                  </Link>
                 </Reveal>
               );
             })}
@@ -743,7 +684,7 @@ function Home() {
         <div className="mx-auto max-w-7xl px-5">
           <Reveal className="text-center">
             <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">Industries</p>
-            <h2 className="mt-3 text-2xl font-extrabold sm:text-3xl">Sectors we know well</h2>
+            <h2 className="mt-3 text-2xl font-extrabold sm:text-3xl">Industries We Serve</h2>
           </Reveal>
         </div>
         <div className="relative mt-8 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_10%,black_90%,transparent)]">
@@ -760,51 +701,40 @@ function Home() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section id="faq" className="py-24">
-        <div className="mx-auto max-w-3xl px-5">
+      <section className="bg-background py-16 md:py-20">
+        <div className="mx-auto max-w-4xl px-5">
           <Reveal className="text-center">
             <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">FAQ</p>
-            <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">Common questions</h2>
+            <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">Frequently Asked Questions</h2>
           </Reveal>
-          <div className="mt-10 grid gap-3">
-            {FAQS.map((f, i) => (
-              <Reveal key={f.q} delay={i * 60}>
-                <div className="overflow-hidden rounded-2xl border border-border bg-card">
-                  <button
-                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="flex w-full items-center gap-4 px-5 py-4 text-left"
-                    aria-expanded={openFaq === i}
-                  >
-                    <span className="min-w-0 flex-1 font-display font-bold">{f.q}</span>
-                    <ChevronDown
-                      className={`h-5 w-5 shrink-0 text-primary transition-transform duration-300 ${
-                        openFaq === i ? "rotate-180" : ""
-                      }`}
-                    />
-                  </button>
-                  <div
-                    className={`grid transition-all duration-300 ease-out ${
-                      openFaq === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-                    }`}
-                  >
-                    <p className="overflow-hidden px-5 pb-5 text-sm leading-relaxed text-muted-foreground">
-                      {f.a}
-                    </p>
-                  </div>
-                </div>
+          <div className="mt-9 grid gap-4">
+            {HOME_FAQS.map(({ question, answer }, index) => (
+              <Reveal key={question} delay={index * 60}>
+                <details className="group rounded-2xl border border-border bg-card">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-5 font-display font-bold text-primary [&::-webkit-details-marker]:hidden">
+                    <span>{question}</span>
+                    <ChevronDown className="h-5 w-5 shrink-0 transition-transform group-open:rotate-180" />
+                  </summary>
+                  <p className="px-5 pb-5 text-sm leading-7 text-muted-foreground">{answer}</p>
+                </details>
               </Reveal>
             ))}
+          </div>
+          <div className="mt-8 text-center">
+            <Link to="/faq" className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-accent">
+              View all FAQs
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section id="contact" className="hero-mesh relative overflow-hidden py-24">
+      <section id="contact" className="hero-mesh relative overflow-hidden pt-24 pb-12">
         <div className="pointer-events-none absolute -left-20 bottom-0 h-72 w-72 rounded-full bg-gold/25 blur-3xl blob" />
-        <div className="mx-auto max-w-3xl px-5 text-center">
+        <div className="mx-auto max-w-7xl px-5 text-center">
           <Reveal>
-            <h2 className="text-balance text-3xl font-extrabold sm:text-5xl">
+            <h2 className="mx-auto max-w-3xl text-balance text-3xl font-extrabold sm:text-5xl">
               Let’s build a clearer path for <span className="gradient-text">your next stage of growth.</span>
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-muted-foreground">
@@ -813,13 +743,19 @@ function Home() {
             </p>
           </Reveal>
           <Reveal delay={120}>
-            <div className="mx-auto mt-9 max-w-[1400px]">
+            <div className="mx-auto mb-6 max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Free Consultation</p>
+              <h3 className="mt-3 text-2xl font-bold">30 Minute Meeting</h3>
+              <p className="mt-2 text-muted-foreground">
+                Pick a time that suits you. We only ask for the essentials.
+              </p>
+            </div>
+            <div className="mx-auto mt-9 w-full max-w-[1400px]">
               <div className="w-full max-w-[1200px] justify-self-center bg-transparent shadow-none md:justify-self-center">
                 <div
                   ref={calendlyWidgetRef}
                   className="calendly-inline-widget"
                   data-url="https://calendly.com/iammush22/30min?hide_event_type_details=1"
-                  style={{ minWidth: "320px", height: "600px", width: "100%", border: "none", borderRadius: 0, overflow: "hidden" }}
                 />
               </div>
             </div>
@@ -831,81 +767,7 @@ function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-border bg-card py-10">
-        <div className="mx-auto grid max-w-7xl items-start gap-8 px-5 md:grid-cols-[1.2fr_1fr_1.2fr_1.2fr]">
-          <div>
-            <img src={logo} alt="HSB Consulting & Advisory" className="h-12 w-auto" />
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              HSB Consulting & Advisory (Pvt) Ltd. delivers practical accounting, tax, secretarial,
-              payroll and advisory support built on integrity, professionalism and lasting client trust.
-            </p>
-          </div>
-          <div>
-            <p className="font-display font-bold">Services</p>
-            <ul className="mt-4 grid gap-2 text-sm text-muted-foreground">
-              {SERVICES.slice(0, 5).map((s) => (
-                <li key={s.title}>
-                  <a href="#services" className="transition-colors hover:text-primary">
-                    {s.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <p className="font-display font-bold">Contact</p>
-            <ul className="mt-4 grid gap-2 text-sm text-muted-foreground">
-              <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 text-primary" />
-                <span>076-7999939</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 text-primary" />
-                <span>077-8850441</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-primary" />
-                <a href="mailto:hbhamz@yahoo.com" target="_blank" rel="noreferrer" className="transition-colors hover:text-primary">
-                  hbhamz@yahoo.com
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-primary" />
-                <span>C1/3/5, Forbes Lane, Maradana, Colombo 10</span>
-              </li>
-            </ul>
-            <div className="mt-5 flex items-center gap-3">
-              {[{ label: "Facebook", icon: Facebook, href: "https://facebook.com" }, { label: "Instagram", icon: Instagram, href: "https://instagram.com" }, { label: "LinkedIn", icon: Linkedin, href: "https://linkedin.com" }].map(({ label, icon: Icon, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={label}
-                  className="grid h-10 w-10 place-items-center rounded-full border border-border bg-background text-primary transition-colors hover:bg-primary-soft"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              ))}
-            </div>
-          </div>
-          <div>
-            <p className="font-display font-bold">Location</p>
-            <div className="mt-4 overflow-hidden rounded-2xl border border-border bg-background">
-              <iframe
-                title="HSB location map"
-                src="https://www.google.com/maps?q=C1%2F3%2F5%2C%20Forbes%20Lane%2C%20Maradana%2C%20Colombo%2010&output=embed"
-                className="h-32 w-full border-0"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
-          </div>
-        </div>
-        <div className="mx-auto mt-10 max-w-7xl border-t border-border px-5 pt-6 text-xs text-muted-foreground">
-          © {new Date().getFullYear()} HSB Consulting & Advisory (Pvt) Ltd.
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
