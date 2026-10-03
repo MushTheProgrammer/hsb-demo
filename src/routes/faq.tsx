@@ -45,6 +45,7 @@ function FAQPage() {
             </div>
             <Link to="/industries" className="site-nav-link rounded-full px-4 py-2 text-sm font-medium">Industries</Link>
             <Link to="/insights" className="site-nav-link rounded-full px-4 py-2 text-sm font-medium">Insights</Link>
+            <Link to="/careers" className="site-nav-link rounded-full px-4 py-2 text-sm font-medium">Careers</Link>
             <Link to="/faq" className="site-nav-link rounded-full px-4 py-2 text-sm font-medium" aria-current="page">FAQ</Link>
           </nav>
           <div className="ml-3 hidden items-center gap-3 xl:flex">
@@ -84,6 +85,7 @@ function FAQPage() {
               </div>
               <Link to="/industries" onClick={() => setMenuOpen(false)} className="site-nav-link rounded-xl px-4 py-3 text-sm font-medium">Industries</Link>
               <Link to="/insights" onClick={() => setMenuOpen(false)} className="site-nav-link rounded-xl px-4 py-3 text-sm font-medium">Insights</Link>
+              <Link to="/careers" onClick={() => setMenuOpen(false)} className="site-nav-link rounded-xl px-4 py-3 text-sm font-medium">Careers</Link>
               <Link to="/faq" onClick={() => setMenuOpen(false)} className="site-nav-link rounded-xl px-4 py-3 text-sm font-medium" aria-current="page">FAQ</Link>
               <a href="/#contact" onClick={() => setMenuOpen(false)} className="mt-2 rounded-xl border border-[#d4ad4b] px-4 py-3 text-center text-sm font-semibold text-[#10244a]">Book a Free Consultation</a>
               <a href="/contact" onClick={() => setMenuOpen(false)} className="site-contact-link mt-2 rounded-xl px-4 py-3 text-center text-sm font-semibold">Contact us</a>

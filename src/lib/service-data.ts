@@ -261,9 +261,9 @@ export const SERVICE_CATALOG: ServiceItem[] = [
   },
   {
     slug: "internal-audit",
-    label: "Internal Audit",
-    tag: "Internal Audit",
-    title: "Internal Audit",
+    label: "Internal Audit & Assurance",
+    tag: "Internal Audit & Assurance",
+    title: "Internal Audit & Assurance",
     summary:
       "Our internal audit services provide businesses with an independent assessment of their internal controls, financial processes and operational practices. We help identify weaknesses, reduce risks and strengthen the systems that support effective business management.",
     image: internalAuditImage,

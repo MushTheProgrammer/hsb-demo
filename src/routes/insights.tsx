@@ -1,16 +1,26 @@
 import { useState } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, redirect, useRouterState } from "@tanstack/react-router";
 import { ChevronDown, Menu, X } from "lucide-react";
 import logo from "@/assets/HSB_LOGO_WORDMARK.png";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SERVICE_CATALOG } from "@/lib/service-data";
 
 export const Route = createFileRoute("/insights")({
+  beforeLoad: ({ location }) => {
+    if (location.pathname === "/insights") {
+      throw redirect({ href: "/insights/events" });
+    }
+  },
   component: InsightsPage,
 });
 
 function InsightsPage() {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
   const [menuOpen, setMenuOpen] = useState(false);
+
+  if (pathname !== "/insights") {
+    return <Outlet />;
+  }
 
   return (
     <div className="min-h-screen bg-background text-foreground">

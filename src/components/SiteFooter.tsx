@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUp, Facebook, Instagram, Mail, MapPin, MessageCircle, Phone, Linkedin } from "lucide-react";
+import { ArrowUp, Facebook, Instagram, Mail, MapPin, Phone, Linkedin } from "lucide-react";
 import logo from "@/assets/HSB_LOGO_WORDMARK.png";
 import { SERVICE_CATALOG } from "@/lib/service-data";
 
@@ -43,8 +43,8 @@ export function SiteFooter() {
             </li>
             <li className="flex items-start gap-2">
               <Mail className="mt-0.5 h-4 w-4 text-sky-700" />
-              <a href="mailto:hbhamz@yahoo.com" className="transition-colors hover:text-sky-700">
-                hbhamz@yahoo.com
+              <a href="mailto:hsbcorporateservices@gmail.com" className="transition-colors hover:text-sky-700">
+                hsbcorporateservices@gmail.com
               </a>
             </li>
             <li className="flex items-start gap-2">
@@ -54,9 +54,9 @@ export function SiteFooter() {
           </ul>
           <div className="mt-5 flex items-center gap-3">
             {[
-              { label: "Facebook", icon: Facebook, href: "https://facebook.com" },
-              { label: "Instagram", icon: Instagram, href: "https://instagram.com" },
-              { label: "LinkedIn", icon: Linkedin, href: "https://linkedin.com" },
+              { label: "Facebook", icon: Facebook, href: "https://www.facebook.com/people/HSB-Consulting-Corporate-Services-Pvt-Ltd/61594383479606/" },
+              { label: "Instagram", icon: Instagram, href: "https://www.instagram.com/hsb.consulting?stkn=MXd1bG5vMGVpcWhkMQ==&utm_source=ig_contact_invite" },
+              { label: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/company/hsb-consulting-corporate-services-pvt-ltd/" },
             ].map(({ label, icon: Icon, href }) => (
               <a
                 key={label}
@@ -98,14 +98,14 @@ export function SiteFooter() {
         <ArrowUp className="h-5 w-5" />
       </button>
       <a
-        href="https://wa.link/jmymwz"
+        href="https://wa.me/94707999939"
         target="_blank"
         rel="noreferrer"
-        aria-label="Chat with us on WhatsApp"
-        title="Chat with us on WhatsApp"
-        className="fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2"
+        aria-label="Chat on WhatsApp"
+        title="Chat on WhatsApp: +94 70 799 9939"
+        className="fixed bottom-5 right-5 z-50 transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2"
       >
-        <MessageCircle className="h-7 w-7" />
+        <img src="/WhatsAppButtonGreenLarge.svg" alt="Chat on WhatsApp" className="h-auto w-52 max-w-[calc(100vw-2.5rem)]" />
       </a>
     </>
   );

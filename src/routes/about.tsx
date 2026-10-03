@@ -1,17 +1,36 @@
 import { useState } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, BadgeCheck, ChevronDown, Menu, X } from "lucide-react";
+import { createFileRoute, Link, Outlet, redirect, useRouterState } from "@tanstack/react-router";
+import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
+import expertiseIcon from "@/assets/why-expertise.png";
+import clientFocusIcon from "@/assets/why-client-focus.png";
+import integrityIcon from "@/assets/why-integrity.png";
+import insightIcon from "@/assets/why-insight.png";
+import confidentialityIcon from "@/assets/why-confidentiality.png";
+import partnershipIcon from "@/assets/why-partnership.png";
+import visionIcon from "@/assets/vision.png";
+import missionIcon from "@/assets/mission.png";
+import approachIcon from "@/assets/approach.png";
 import logo from "@/assets/HSB_LOGO_WORDMARK.png";
 import founderPhoto from "@/assets/img/found.jpg";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SERVICE_CATALOG } from "@/lib/service-data";
 
 export const Route = createFileRoute("/about")({
+  beforeLoad: ({ location }) => {
+    if (location.pathname === "/about") {
+      throw redirect({ href: "/about/company" });
+    }
+  },
   component: AboutPage,
 });
 
 function AboutPage() {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
   const [menuOpen, setMenuOpen] = useState(false);
+
+  if (pathname !== "/about") {
+    return <Outlet />;
+  }
 
   return (
     <div className="min-h-screen bg-[#f5f7fb] text-slate-800">
@@ -115,20 +134,23 @@ function AboutPage() {
             {[
               {
                 title: "Vision",
+                icon: visionIcon,
                 text: "To be the trusted professional partner behind confident decisions, sustainable growth and lasting business success.",
               },
               {
                 title: "Mission",
+                icon: missionIcon,
                 text: "To provide exceptional assurance, advisory, taxation and business solutions through professional excellence, integrity and practical insight.",
               },
               {
                 title: "Approach",
+                icon: approachIcon,
                 text: "We take time to understand each client’s circumstances and tailor our services to meet their specific needs.",
               },
             ].map((item) => (
               <div key={item.title} className="rounded-[1.5rem] border border-sky-200 bg-white p-6 shadow-[0_20px_45px_-32px_rgba(13,59,114,0.35)]">
                 <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-sky-100 text-sky-700">
-                  <BadgeCheck className="h-5 w-5" />
+                  <img src={item.icon} alt="" aria-hidden="true" className="h-11 w-11 object-contain" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900">{item.title}</h3>
                 <p className="mt-3 text-base leading-7 text-slate-600">{item.text}</p>
@@ -144,37 +166,42 @@ function AboutPage() {
             {[
               {
                 title: "Professional Expertise",
+                icon: expertiseIcon,
                 text: "Our team brings together professional knowledge and practical experience across accounting, taxation, audit/assurance, advisory, and business consultancy.",
               },
               {
                 title: "Client-Focused Approach",
+                icon: clientFocusIcon,
                 text: "Every business is different. We take the time to understand our clients' unique circumstances, challenges, and objectives, allowing us to provide solutions that are relevant and tailored to their needs.",
               },
               {
                 title: "Integrity & Independence",
+                icon: integrityIcon,
                 text: "We are committed to maintaining the highest standards of integrity, objectivity, and professional independence in everything we do, ensuring our clients can rely on our advice and professional judgment.",
               },
               {
                 title: "Practical Business Insight",
+                icon: insightIcon,
                 text: "We look beyond the numbers to understand the factors influencing business performance. Our focus is on providing practical recommendations that can be implemented and create meaningful value.",
               },
               {
                 title: "Confidentiality & Trust",
+                icon: confidentialityIcon,
                 text: "We understand the importance of protecting sensitive financial and business information. Confidentiality, discretion, and trust are fundamental to the relationships we build with our clients.",
               },
               {
                 title: "Long-Term Partnership",
+                icon: partnershipIcon,
                 text: "We aim to be more than a service provider. By developing lasting relationships and providing ongoing guidance, we support our clients through changing business environments and towards sustainable growth.",
               },
               {
                 title: "Turning Complexity into Clarity",
+                icon: insightIcon,
                 text: "From regulatory requirements and financial information to business challenges and risks, we help simplify complexity and provide clear, informed perspectives that give our clients greater confidence in their decisions.",
               },
             ].map((item) => (
               <div key={item.title} className="rounded-2xl border border-sky-200 bg-white p-5 shadow-sm">
-                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-sky-100 text-sky-700">
-                  <BadgeCheck className="h-5 w-5" />
-                </div>
+                <img src={item.icon} alt="" aria-hidden="true" className="mb-4 h-14 w-14 rounded-full object-contain" />
                 <h3 className="text-xl font-bold text-slate-900">{item.title}</h3>
                 <p className="mt-3 text-base leading-7 text-slate-600">{item.text}</p>
               </div>
@@ -188,7 +215,7 @@ function AboutPage() {
             <img
               src={founderPhoto}
               alt="Hamsath Begam, Founder and Director"
-              className="mx-auto h-auto w-full max-w-sm rounded-2xl object-contain object-center"
+              className="mx-auto h-auto w-full max-w-sm rounded-[2rem] object-contain object-center"
             />
             <div>
               <h3 className="text-2xl font-bold text-slate-900">Hamsath Begam, FCA</h3>

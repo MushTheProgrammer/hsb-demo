@@ -65,6 +65,7 @@ const NAV = [
   },
   { label: "Industries", href: "/industries" },
   { label: "Insights", href: "/insights" },
+  { label: "Careers", href: "/careers" },
   { label: "FAQ", href: "/faq" },
 ];
 
@@ -106,7 +107,7 @@ const SERVICES = [
   },
   {
     slug: "internal-audit",
-    title: "Internal Audit",
+    title: "Internal Audit & Assurance",
     body: "Independent review of internal controls, processes and systems to reduce operational risk and strengthen business oversight.",
     cardIcon: internalAuditIcon,
     art: "shield",
@@ -744,10 +745,13 @@ function Home() {
           </Reveal>
           <Reveal delay={120}>
             <div className="mx-auto mb-6 max-w-3xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Free Consultation</p>
-              <h3 className="mt-3 text-2xl font-bold">30 Minute Meeting</h3>
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">
+                Free Consultation <span className="px-1.5 text-muted-foreground">|</span> Fast Service{" "}
+                <span className="px-1.5 text-muted-foreground">|</span> Responses Within 1 Working Day
+              </p>
+              <h3 className="mt-3 text-2xl font-bold">30-minute discovery call</h3>
               <p className="mt-2 text-muted-foreground">
-                Pick a time that suits you. We only ask for the essentials.
+                We&apos;ll listen, suggest options, and quote you a fixed price, only if you want one.
               </p>
             </div>
             <div className="mx-auto mt-9 w-full max-w-[1400px]">

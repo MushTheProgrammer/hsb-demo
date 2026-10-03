@@ -4,6 +4,9 @@ import { CalendarDays, ChevronDown, Mail, MapPin, Menu, Phone, X } from "lucide-
 import logo from "@/assets/HSB_LOGO_WORDMARK.png";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SERVICE_CATALOG } from "@/lib/service-data";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 
 export const Route = createFileRoute("/contact")({
   component: ContactPage,
@@ -11,6 +14,38 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showCalendly, setShowCalendly] = useState(false);
+  const [formResult, setFormResult] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    formData.append("access_key", "6cb5de0c-d5af-489f-ada9-415115070164");
+    setIsSubmitting(true);
+    setFormResult("Sending...");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+      const data: { success?: boolean } = await response.json();
+
+      if (!response.ok || !data.success) {
+        setFormResult("Unable to send your message. Please try again.");
+        return;
+      }
+
+      setFormResult("Form Submitted Successfully");
+      form.reset();
+    } catch {
+      setFormResult("Unable to send your message. Please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -44,6 +79,7 @@ function ContactPage() {
             </div>
             <Link to="/industries" className="site-nav-link rounded-full px-4 py-2 text-sm font-medium">Industries</Link>
             <Link to="/insights" className="site-nav-link rounded-full px-4 py-2 text-sm font-medium">Insights</Link>
+            <Link to="/careers" className="site-nav-link rounded-full px-4 py-2 text-sm font-medium">Careers</Link>
             <Link to="/faq" className="site-nav-link rounded-full px-4 py-2 text-sm font-medium">FAQ</Link>
           </nav>
           <div className="ml-3 hidden items-center gap-3 xl:flex">
@@ -83,6 +119,7 @@ function ContactPage() {
               </div>
               <Link to="/industries" onClick={() => setMenuOpen(false)} className="site-nav-link rounded-xl px-4 py-3 text-sm font-medium">Industries</Link>
               <Link to="/insights" onClick={() => setMenuOpen(false)} className="site-nav-link rounded-xl px-4 py-3 text-sm font-medium">Insights</Link>
+              <Link to="/careers" onClick={() => setMenuOpen(false)} className="site-nav-link rounded-xl px-4 py-3 text-sm font-medium">Careers</Link>
               <Link to="/faq" onClick={() => setMenuOpen(false)} className="site-nav-link rounded-xl px-4 py-3 text-sm font-medium">FAQ</Link>
               <Link to="/#contact" onClick={() => setMenuOpen(false)} className="mt-2 rounded-xl border border-[#d4ad4b] px-4 py-3 text-center text-sm font-semibold text-[#10244a]">Book a Free Consultation</Link>
               <Link to="/contact" onClick={() => setMenuOpen(false)} className="site-contact-link mt-2 rounded-xl px-4 py-3 text-center text-sm font-semibold">Contact us</Link>
@@ -107,9 +144,9 @@ function ContactPage() {
                 <Phone className="mt-1 h-5 w-5 shrink-0 text-accent" />
                 <span><span className="block font-semibold">Phone</span><span className="mt-1 block text-muted-foreground">070-7999939</span></span>
               </a>
-              <a href="mailto:hbhamz@yahoo.com" className="flex items-start gap-4 text-foreground hover:text-primary">
+              <a href="mailto:hsbcorporateservices@gmail.com" className="flex items-start gap-4 text-foreground hover:text-primary">
                 <Mail className="mt-1 h-5 w-5 shrink-0 text-accent" />
-                <span><span className="block font-semibold">Email</span><span className="mt-1 block text-muted-foreground">hbhamz@yahoo.com</span></span>
+                <span><span className="block font-semibold">Email</span><span className="mt-1 block text-muted-foreground">hsbcorporateservices@gmail.com</span></span>
               </a>
               <div className="flex items-start gap-4">
                 <MapPin className="mt-1 h-5 w-5 shrink-0 text-accent" />
@@ -130,14 +167,69 @@ function ContactPage() {
           <section aria-labelledby="booking-title">
             <div className="flex items-center gap-3">
               <CalendarDays className="h-6 w-6 text-accent" />
-              <h2 id="booking-title" className="text-2xl font-bold text-primary">Book a Free Consultation</h2>
+              <h2 id="booking-title" className="text-2xl font-bold text-primary">
+                {showCalendly ? "Book a Free Consultation" : "Send us an enquiry"}
+              </h2>
             </div>
-            <iframe
-              title="Book a free consultation with HSB"
-              src="https://calendly.com/hsbcorporateservices/30min"
-              className="calendly-contact-embed mt-5 w-full border-0 bg-transparent"
-              loading="lazy"
-            />
+            {showCalendly ? (
+              <div>
+                <iframe
+                  title="Book a free consultation with HSB"
+                  src="https://calendly.com/hsbcorporateservices/30min"
+                  className="calendly-contact-embed mt-5 w-full border-0 bg-transparent"
+                  loading="lazy"
+                />
+                <div className="mt-5 flex justify-center">
+                  <button
+                    type="button"
+                    onClick={() => setShowCalendly(false)}
+                    className="rounded-full border border-primary px-5 py-3 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+                  >
+                    Back to contact form
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <>
+                <form onSubmit={onSubmit} className="mt-5 grid gap-5 rounded-xl border border-border bg-card p-5 md:p-6">
+                  <div className="grid gap-2">
+                    <Label htmlFor="contact-name">Name</Label>
+                    <Input id="contact-name" name="name" type="text" autoComplete="name" required />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="contact-phone">Phone</Label>
+                    <Input id="contact-phone" name="phone" type="phone" autoComplete="phone" required />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="contact-email">Email</Label>
+                    <Input id="contact-email" name="email" type="email" autoComplete="email" required />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="contact-message">Message</Label>
+                    <Textarea id="contact-message" name="message" rows={5} required />
+                  </div>
+                  <div className="flex flex-wrap items-center gap-4">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-60"
+                    >
+                      {isSubmitting ? "Sending..." : "Submit Form"}
+                    </button>
+                    <span aria-live="polite" className="text-sm text-muted-foreground">{formResult}</span>
+                  </div>
+                </form>
+                <div className="mt-6 flex justify-center text-center">
+                  <button
+                    type="button"
+                    onClick={() => setShowCalendly(true)}
+                    className="rounded-full border border-[#d4ad4b] px-6 py-3 text-sm font-semibold text-primary transition-colors hover:bg-[#d4ad4b]"
+                  >
+                    Want to Book a Meeting Directly? Click Here
+                  </button>
+                </div>
+              </>
+            )}
           </section>
         </div>
       </main>

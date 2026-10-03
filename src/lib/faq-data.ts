@@ -10,6 +10,11 @@ export const FAQ_ITEMS = [
       "Yes. We provide monthly bookkeeping services to help businesses maintain accurate and up-to-date accounting records. The service can be tailored to the size and nature of your business and may include recording transactions, reconciliations, maintaining ledgers, and preparing periodic financial information.",
   },
   {
+    question: "Can HSB handle our company's payroll?",
+    answer:
+      "Absolutely! We offer reliable and confidential payroll processing services to help businesses manage employee salaries, statutory deductions, payslips, and payroll administration efficiently.",
+  },
+  {
     question: "Do you prepare financial statements?",
     answer:
       "Yes. We prepare financial statements based on the accounting records and information provided by the client, in accordance with the applicable financial reporting requirements. Financial statement preparation can also be provided as part of our ongoing accounting services.",

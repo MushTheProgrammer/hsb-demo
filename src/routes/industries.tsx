@@ -1,19 +1,19 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
-  BriefcaseBusiness,
   ChevronDown,
-  Factory,
-  GraduationCap,
-  Leaf,
   Menu,
-  ShoppingCart,
-  Truck,
-  UsersRound,
-  UtensilsCrossed,
   X,
 } from "lucide-react";
 import { useState } from "react";
+import manufacturingIcon from "@/assets/industry-manufacturing.png";
+import logisticsIcon from "@/assets/industry-logistics.png";
+import retailIcon from "@/assets/industry-retail.png";
+import restaurantsIcon from "@/assets/industry-restaurants.png";
+import educationIcon from "@/assets/industry-education.png";
+import agricultureIcon from "@/assets/industry-agriculture.png";
+import professionalServicesIcon from "@/assets/industry-professional-services.png";
+import smeIcon from "@/assets/industry-sme.png";
 import logo from "@/assets/HSB_LOGO_WORDMARK.png";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SERVICE_CATALOG } from "@/lib/service-data";
@@ -26,42 +26,42 @@ const industries = [
   {
     title: "Manufacturing & Industrial",
     description: "End-to-end support for production businesses handling cost monitoring, process control, compliance and reporting requirements.",
-    icon: Factory,
+    icon: manufacturingIcon,
   },
   {
     title: "Cargo, Logistics & Transportation",
     description: "Practical financial and compliance support for operationally complex transport and logistics businesses.",
-    icon: Truck,
+    icon: logisticsIcon,
   },
   {
     title: "Retail & Trading",
     description: "Commercial support for trading businesses needing clean books, tax clarity and efficient control systems.",
-    icon: ShoppingCart,
+    icon: retailIcon,
   },
   {
     title: "Restaurants & Food Businesses",
     description: "Guidance for hospitality and food ventures managing margins, compliance, growth planning and reporting.",
-    icon: UtensilsCrossed,
+    icon: restaurantsIcon,
   },
   {
     title: "Educational Institutions",
     description: "Support for institutions seeking strong financial governance, compliance and long-term sustainability.",
-    icon: GraduationCap,
+    icon: educationIcon,
   },
   {
     title: "Agricultural & Fertilizer Imports",
     description: "Specialist support for import-driven and agricultural businesses navigating inventory, tax and compliance issues.",
-    icon: Leaf,
+    icon: agricultureIcon,
   },
   {
     title: "Professional Services",
     description: "Advisory and reporting support for professional firms that need dependable financial insight and governance.",
-    icon: BriefcaseBusiness,
+    icon: professionalServicesIcon,
   },
   {
     title: "Small & Medium Enterprises",
     description: "Tailored support to help growing businesses improve structure, reporting, compliance and decision-making.",
-    icon: UsersRound,
+    icon: smeIcon,
   },
 ];
 
@@ -97,6 +97,7 @@ function IndustriesPage() {
             </div>
             <Link to="/industries" className="rounded-full px-4 py-2 text-sm font-medium text-sky-700 transition-colors hover:bg-slate-100">Industries</Link>
             <Link to="/insights" className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-sky-700">Insights</Link>
+            <Link to="/careers" className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-sky-700">Careers</Link>
             <Link to="/faq" className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-sky-700">FAQ</Link>
           </nav>
 
@@ -132,6 +133,7 @@ function IndustriesPage() {
               </div>
               <Link to="/industries" onClick={() => setMenuOpen(false)} className="rounded-xl px-4 py-3 text-sm font-medium text-sky-700 hover:bg-slate-100">Industries</Link>
               <Link to="/insights" onClick={() => setMenuOpen(false)} className="rounded-xl px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100">Insights</Link>
+              <Link to="/careers" onClick={() => setMenuOpen(false)} className="rounded-xl px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100">Careers</Link>
               <Link to="/faq" onClick={() => setMenuOpen(false)} className="rounded-xl px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100">FAQ</Link>
               <a href="/#contact" onClick={() => setMenuOpen(false)} className="mt-2 rounded-xl border border-[#d4ad4b] px-4 py-3 text-center text-sm font-semibold text-[#10244a]">Book a Free Consultation</a>
               <a href="/contact" onClick={() => setMenuOpen(false)} className="mt-2 rounded-xl bg-[#10BFC3] px-4 py-3 text-center text-sm font-semibold text-white">Contact us</a>
@@ -150,10 +152,10 @@ function IndustriesPage() {
         </section>
 
         <section className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {industries.map(({ title, description, icon: Icon }) => (
+          {industries.map(({ title, description, icon }) => (
             <div key={title} className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-[0_20px_45px_-32px_rgba(13,59,114,0.35)]">
-              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EEF3E9] text-[var(--gold)]">
-                <Icon className="h-5 w-5" />
+              <div className="mb-5 h-16 w-16">
+                <img src={icon} alt="" aria-hidden="true" className="h-full w-full object-contain" />
               </div>
               <h2 className="text-xl font-bold leading-snug text-slate-900">{title}</h2>
               <p className="mt-3 text-sm leading-7 text-slate-600 break-words">{description}</p>

@@ -89,6 +89,11 @@
     font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
+
+}
+
+body :is(h1, h2, h3, h4):not(header *):not(footer *):not([class*="text-white"]):not([class*="text-primary-foreground"]):not(:where(.text-white) *):not(:where(.text-primary-foreground) *) {
+  color: #000081;
 }
 
 /* ---------- Surfaces ---------- */
@@ -395,6 +400,10 @@
   box-shadow: 0 12px 30px -24px rgb(16 36 74 / 35%);
 }
 
+.site-header:not(.shared-site-header) {
+  display: none;
+}
+
 body.is-scrolled .site-header {
   background: rgb(255 255 255 / 50%) !important;
   backdrop-filter: blur(14px) saturate(140%);
@@ -418,18 +427,20 @@ body.is-scrolled .site-header {
   color: var(--gold) !important;
 }
 
-.site-header nav .group > div {
+.site-header .site-nav-dropdown {
   border-color: #d7dce3;
   background: #ffffff;
+  backdrop-filter: none;
 }
 
-.site-header nav .group > div a {
+.site-header .site-nav-dropdown a {
   color: #26344e;
 }
 
-.site-header nav .group > div a:hover {
-  background: var(--gold);
-  color: #ffffff !important;
+.site-header .site-nav-dropdown a:hover,
+.site-header .site-nav-dropdown a:focus-visible {
+  background: #f0f2f5;
+  color: var(--gold) !important;
 }
 
 .site-header .site-mobile-menu,
@@ -451,9 +462,33 @@ body.is-scrolled .site-header {
   color: #10244a;
 }
 
-.site-header a[href="/contact"] {
+.site-header .site-consultation-link {
+  border-color: var(--gold);
+  background: transparent;
+  color: #10244a;
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.site-header .site-consultation-link:hover,
+.site-header .site-consultation-link:focus-visible {
+  background: var(--gold);
+  color: #10244a !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 18px rgb(16 36 74 / 18%);
+}
+
+.site-header a.site-contact-link {
   background: var(--gold) !important;
   color: #10244a !important;
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.site-header a.site-contact-link:hover,
+.site-header a.site-contact-link:focus-visible {
+  background: #c99e3a !important;
+  color: #10244a !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 18px rgb(16 36 74 / 18%);
 }
 
 .site-footer {
